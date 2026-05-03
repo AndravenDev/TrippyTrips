@@ -198,32 +198,33 @@ export const Hero = ({ content }: { content: HeroContent }) => (
               border: '4px solid var(--ink)',
               borderRadius: 24,
               overflow: 'hidden',
-              background: 'var(--ink)',
               boxShadow: '14px 14px 0 var(--accent-4)',
             }}
           >
-            <Mountains style={{ height: '100%' }} />
+            <img
+              src="https://stroiinfo.com/wp-content/uploads/2020/04/%D0%9F%D0%B0%D0%BC%D0%B5%D1%82%D0%BD%D0%B8%D0%BA%D0%BD%D0%B0%D0%91%D1%83%D0%B7%D0%BB%D1%83%D0%B4%D0%B6%D0%B0_a3429bff1fc97fbba659184eca9160bf.jpg"
+              alt="Бузлуджа"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
           </div>
           <div style={{ position: 'absolute', top: -22, right: -22 }}>
             <StarBurst size={88} />
           </div>
-          <div style={{ position: 'absolute', bottom: -28, left: -28, transform: 'rotate(-8deg)' }}>
+          <div style={{ position: 'absolute', bottom: -20, left: -20, transform: 'rotate(-6deg)' }}>
             <div
               style={{
                 background: 'var(--paper)',
                 border: '3px solid var(--ink)',
-                padding: '10px 18px',
+                padding: '10px 20px',
                 borderRadius: 999,
                 fontFamily: 'Caprasimo, serif',
                 fontSize: 22,
                 boxShadow: '4px 4px 0 var(--ink)',
+                whiteSpace: 'nowrap',
               }}
             >
-              let's gooo ✨
+              Let's go!
             </div>
-          </div>
-          <div style={{ position: 'absolute', top: 32, left: -34 }}>
-            <Hookah size={130} />
           </div>
         </div>
       </div>
@@ -320,58 +321,76 @@ interface DayCardProps {
   title: string;
   subtitle: string;
   body: string;
-  distance: string;
+  distance?: string;
   time?: string;
+  image?: string;
   tags: string[];
   accent: string;
   side: 'left' | 'right';
 }
 
-const DayCard = ({ label, title, subtitle, body, distance, time, tags, accent, side }: DayCardProps) => (
+const DayCard = ({ label, title, subtitle, body, distance, time, image, tags, accent, side }: DayCardProps) => (
   <div
     className={`day-card day-card--${side}`}
     style={{
       background: 'var(--paper)',
       border: '3px solid var(--ink)',
       borderRadius: 20,
-      padding: '24px 26px',
       boxShadow: side === 'left' ? '-7px 8px 0 var(--ink)' : '7px 8px 0 var(--ink)',
       position: 'relative',
+      display: 'flex',
+      overflow: 'hidden',
     }}
   >
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 8, flexWrap: 'wrap' }}>
-      <span
-        className="mono"
-        style={{ background: accent, color: 'var(--ink)', padding: '4px 10px', borderRadius: 6, fontSize: 12, fontWeight: 600 }}
-      >
-        {label.toUpperCase()}
-      </span>
-      <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-        {time && (
-          <span className="mono" style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink)', letterSpacing: '0.05em' }}>
-            {time}
-          </span>
-        )}
-        <span className="mono" style={{ fontSize: 11, color: 'var(--ink-soft)' }}>
-          {distance}
+    {/* text content */}
+    <div style={{ flex: 1, minWidth: 0, padding: '24px 26px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 8, flexWrap: 'wrap' }}>
+        <span
+          className="mono"
+          style={{ background: accent, color: 'var(--ink)', padding: '4px 10px', borderRadius: 6, fontSize: 12, fontWeight: 600 }}
+        >
+          {label.toUpperCase()}
         </span>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          {time && (
+            <span className="mono" style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink)', letterSpacing: '0.05em' }}>
+              {time}
+            </span>
+          )}
+          {distance && (
+            <span className="mono" style={{ fontSize: 11, color: 'var(--ink-soft)' }}>
+              {distance}
+            </span>
+          )}
+        </div>
+      </div>
+      <h3 className="display" style={{ fontSize: 'clamp(22px, 2.8vw, 32px)', margin: '6px 0 4px', lineHeight: 1.05 }}>
+        {title}
+      </h3>
+      <div style={{ fontSize: 14, fontStyle: 'italic', color: 'var(--ink-soft)', marginBottom: 12 }}>{subtitle}</div>
+      <p style={{ margin: '0 0 14px', fontSize: 15, lineHeight: 1.55, color: 'var(--ink-soft)' }}>{body}</p>
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+        {tags.map((tag, j) => (
+          <span
+            key={j}
+            style={{ fontSize: 12, fontWeight: 500, padding: '4px 10px', border: '1.5px solid var(--ink)', borderRadius: 999 }}
+          >
+            {tag}
+          </span>
+        ))}
       </div>
     </div>
-    <h3 className="display" style={{ fontSize: 'clamp(22px, 2.8vw, 32px)', margin: '6px 0 4px', lineHeight: 1.05 }}>
-      {title}
-    </h3>
-    <div style={{ fontSize: 14, fontStyle: 'italic', color: 'var(--ink-soft)', marginBottom: 12 }}>{subtitle}</div>
-    <p style={{ margin: '0 0 14px', fontSize: 15, lineHeight: 1.55, color: 'var(--ink-soft)' }}>{body}</p>
-    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-      {tags.map((tag, j) => (
-        <span
-          key={j}
-          style={{ fontSize: 12, fontWeight: 500, padding: '4px 10px', border: '1.5px solid var(--ink)', borderRadius: 999 }}
-        >
-          {tag}
-        </span>
-      ))}
-    </div>
+
+    {/* destination photo */}
+    {image && (
+      <div className="day-card__image" style={{ width: '30%', flexShrink: 0, borderLeft: '3px solid var(--ink)' }}>
+        <img
+          src={image}
+          alt={title}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      </div>
+    )}
   </div>
 );
 
@@ -502,7 +521,7 @@ export const Gallery = ({ content }: { content: GalleryContent }) => (
         className="gallery-grid"
         style={{
           display: 'grid',
-          gridTemplateColumns: `repeat(${content.photos.length}, 1fr)`,
+          gridTemplateColumns: 'repeat(3, 1fr)',
           gap: 18,
           alignItems: 'start',
         }}
@@ -512,7 +531,10 @@ export const Gallery = ({ content }: { content: GalleryContent }) => (
           return (
             <div key={i} style={{ marginTop: layout.marginTop }}>
               <Polaroid rotate={layout.rotate} caption={photo.caption}>
-                {sceneMap[photo.sceneKey]}
+                {photo.image
+                  ? <img src={photo.image} alt={photo.caption} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  : photo.sceneKey ? sceneMap[photo.sceneKey] : null
+                }
               </Polaroid>
             </div>
           );

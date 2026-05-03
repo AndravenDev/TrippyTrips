@@ -71,6 +71,25 @@
   .gallery-grid { grid-template-columns: 1fr !important; }
 }
 
+/* ── DAYS ROW (mobile: number above card) ── */
+@media (max-width: 640px) {
+  .days-row { flex-direction: column; gap: 12px; }
+  .day-number { align-self: flex-start; }
+  .day-col.is-card { width: 100%; }
+}
+
+/* ── DAY CARD IMAGE (mobile: stack image on top) ── */
+@media (max-width: 640px) {
+  .day-card { flex-direction: column; }
+  .day-card__image {
+    order: -1;
+    width: 100% !important;
+    height: 200px;
+    border-left: none !important;
+    border-bottom: 3px solid var(--ink);
+  }
+}
+
 /* ── FOOTER ── */
 @media (max-width: 640px) {
   .footer-inner {
