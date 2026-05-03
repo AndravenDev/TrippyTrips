@@ -100,7 +100,6 @@ export const tripContent: TripContent = {
     stats: [
       { value: "3", label: "Дестинации" },
       { value: "3", label: "Дни" },
-      { value: "2", label: "Музея" },
       { value: "∞", label: "Спомени" },
     ],
     marquee: [
@@ -206,7 +205,7 @@ export const tripContent: TripContent = {
   rsvp: {
     eyebrow: '· Кратък roadtrip за 3 дни, с интересни места, без натоварване!',
     heading: 'Зарибен ли си батенце?',
-    description: '',
+    description: '22.05 - 24.05',
     buttonYes: 'Да, бе! 🔥',
     buttonNo: 'Не знам още...',
     modalTitle: 'Кой беше ти?',

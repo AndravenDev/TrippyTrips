@@ -73,9 +73,14 @@ export const Nav = ({ content }: { content: NavContent }) => (
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         <LogoSvg size={44} />
-        <span className="display" style={{ fontSize: 24, color: 'var(--ink)' }}>
-          {content.brand}
-        </span>
+        <div>
+          <div className="display" style={{ fontSize: 24, color: 'var(--ink)', lineHeight: 1.1 }}>
+            {content.brand}
+          </div>
+          <div className="mono" style={{ fontSize: 10, color: 'var(--ink-soft)', letterSpacing: '0.06em' }}>
+            By Mexano Solutions
+          </div>
+        </div>
       </div>
       <div className="nav-links">
         {content.links.map((link) => (
@@ -442,6 +447,16 @@ export const Days = ({ content }: { content: DaysContent }) => (
       </div>
 
       <div style={{ position: 'relative' }}>
+        {/* vertical connector line through the centre of all number circles */}
+        <div style={{
+          position: 'absolute',
+          left: 27,
+          top: 28,
+          bottom: 28,
+          width: 3,
+          background: 'repeating-linear-gradient(to bottom, var(--ink) 0 8px, transparent 8px 18px)',
+          zIndex: 0,
+        }} />
         {content.items.map((day, i) => (
           <div key={i} className="days-row">
             <div
