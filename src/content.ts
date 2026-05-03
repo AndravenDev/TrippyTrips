@@ -195,7 +195,7 @@ export const tripContent: TripContent = {
     photos: [
       { image: "/20220906_164034.jpg", caption: "Flexin -  06.09.2022" },
       { image: "/1759178041531.jpeg", caption: "Conquerors - септември 2025" },
-      { image: "/IMG_20251231_210526.jpg", caption: "нова година 2026" },
+      { image: "/IMG_20251231_210526.jpg", caption: "Нова година 2026" },
       { image: "/IMG_20250302_005559.jpg", caption: "Drip - февруари 2025" },
       { image: "/IMG_20250621_122204.jpg", caption: "Cherry on top - 21.06.2025" },
       { image: "/1759178043430.jpg", caption: "Top of the world - септември 2025" },
@@ -217,6 +217,6 @@ export const tripContent: TripContent = {
   footer: {
     brand: "Trippy Trips",
     tagline: "пътувания за наркомани",
-    copyright: "© 2026 · Mexano Solutioons",
+    copyright: "© 2026 · Mexano Solutions",
   },
 };

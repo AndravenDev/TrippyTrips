@@ -612,7 +612,7 @@ export const Rsvp = ({ content }: { content: RsvpContent }) => {
             {content.buttonYes}
           </button>
           <button
-            onClick={() => setNoClicked(true)}
+            onClick={() => { if (noClicked) { setModalOpen(true); } else { setNoClicked(true); } }}
             style={{
               background: 'transparent',
               color: 'var(--ink)',
