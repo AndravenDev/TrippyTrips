@@ -78,7 +78,7 @@ export const tripContent: TripContent = {
 
   hero: {
     eyebrow: "Пътуване до Бузлуджа",
-    titleLine1: "Бъзлуджа",
+    titleLine1: "Бузлуджа",
     titleLine2Accent: "road trip",
     titleLine2Suffix: "!",
     description:
@@ -177,16 +177,16 @@ export const tripContent: TripContent = {
   },
 
   gallery: {
-    eyebrow: "· Предишни пътешествия",
-    heading: "Снимки от пътя.",
+    eyebrow: "· Спомени от преди",
+    heading: "Ето някои стари спомени, които да ви вдъхновят да създадете нови",
     subtitle: "↳ Балкански приключения, 2025. Камери, смях и много спирки.",
     photos: [
-      { image: "/20220906_164034.jpg", caption: "юни 2025" },
-      { image: "/1759178041531.jpeg", caption: "септември 2022" },
-      { image: "/IMG_20251231_210526.jpg", caption: "август 2023" },
-      { image: "/IMG_20250302_005559.jpg", caption: "март 2025" },
-      { image: "/IMG_20250621_122204.jpg", caption: "юни 2025" },
-      { image: "/1759178043430.jpg", caption: "спомени" },
+      { image: "/20220906_164034.jpg", caption: "Flexin -  06.09.2022" },
+      { image: "/1759178041531.jpeg", caption: "Conquerors - септември 2025" },
+      { image: "/IMG_20251231_210526.jpg", caption: "нова година 2026" },
+      { image: "/IMG_20250302_005559.jpg", caption: "Drip - февруари 2025" },
+      { image: "/IMG_20250621_122204.jpg", caption: "Cherry on top - 21.06.2025" },
+      { image: "/1759178043430.jpg", caption: "Top of the world - спетември 2025" },
     ],
   },
 

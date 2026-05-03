@@ -9,7 +9,7 @@ function App() {
       <Nav content={content.nav} />
       <Hero content={content.hero} />
       <Days content={content.days} />
-      <Why content={content.why} />
+      {/* <Why content={content.why} /> */}
       <Gallery content={content.gallery} />
       <Footer content={content.footer} />
     </>
