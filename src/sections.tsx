@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   LogoSvg,
   StarBurst,
@@ -16,9 +16,11 @@ import type {
   WhyContent,
   DaysContent,
   GalleryContent,
+  RsvpContent,
   FooterContent,
   SceneKey,
 } from './content';
+import { supabase } from './supabase';
 
 /* padding uses CSS custom properties so media-query overrides in index.css apply */
 const inner: React.CSSProperties = {
@@ -541,6 +543,164 @@ export const Gallery = ({ content }: { content: GalleryContent }) => (
     </div>
   </section>
 );
+
+/* ─── RSVP ─── */
+export const Rsvp = ({ content }: { content: RsvpContent }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [noClicked, setNoClicked] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async () => {
+    if (!name.trim()) return;
+    setLoading(true);
+    setError('');
+    const { error: dbError } = await supabase.from('people').insert({ name: name.trim() });
+    setLoading(false);
+    if (dbError) { setError('Нещо се обърка. Опитай пак.'); return; }
+    setSubmitted(true);
+  };
+
+  const closeModal = () => { setModalOpen(false); setName(''); setSubmitted(false); setError(''); };
+
+  return (
+    <section style={{ position: 'relative', width: '100%', padding: 'var(--pad-section) 0', background: 'var(--bg-2)' }}>
+      <div style={{ ...inner, textAlign: 'center' }}>
+        <div style={{ ...eyebrowStyle, marginBottom: 20, justifyContent: 'center' }}>{content.eyebrow}</div>
+        <h2
+          className="display"
+          style={{ fontSize: 'clamp(36px, 5.5vw, 80px)', lineHeight: 1, margin: '0 0 20px', color: 'var(--ink)' }}
+        >
+          {content.heading}
+        </h2>
+        <p style={{ fontSize: 'clamp(15px, 1.8vw, 18px)', lineHeight: 1.6, color: 'var(--ink-soft)', maxWidth: 480, margin: '0 auto 40px' }}>
+          {content.description}
+        </p>
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <button
+            onClick={() => { setNoClicked(false); setModalOpen(true); }}
+            style={{
+              background: 'var(--ink)',
+              color: 'var(--paper)',
+              border: '3px solid var(--ink)',
+              padding: '16px 32px',
+              borderRadius: 999,
+              fontFamily: 'Caprasimo, serif',
+              fontSize: 'clamp(16px, 1.8vw, 20px)',
+              cursor: 'pointer',
+              boxShadow: '5px 5px 0 var(--accent)',
+              transition: 'transform 0.1s',
+            }}
+          >
+            {content.buttonYes}
+          </button>
+          <button
+            onClick={() => setNoClicked(true)}
+            style={{
+              background: 'transparent',
+              color: 'var(--ink)',
+              border: '3px solid var(--ink)',
+              padding: '16px 32px',
+              borderRadius: 999,
+              fontFamily: 'Caprasimo, serif',
+              fontSize: 'clamp(16px, 1.8vw, 20px)',
+              cursor: 'pointer',
+              boxShadow: '5px 5px 0 var(--accent-3)',
+              transition: 'transform 0.1s',
+            }}
+          >
+            {noClicked ? 'Хайде де... 🥺' : content.buttonNo}
+          </button>
+        </div>
+      </div>
+
+      {/* Modal overlay */}
+      {modalOpen && (
+        <div
+          onClick={closeModal}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 100,
+            background: 'rgba(28,39,66,0.55)',
+            backdropFilter: 'blur(4px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '20px',
+          }}
+        >
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{
+              background: 'var(--paper)',
+              border: '3px solid var(--ink)',
+              borderRadius: 24,
+              padding: 'clamp(28px, 4vw, 48px)',
+              boxShadow: '10px 10px 0 var(--ink)',
+              maxWidth: 420,
+              width: '100%',
+              textAlign: 'center',
+            }}
+          >
+            {submitted ? (
+              <>
+                <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
+                <p className="display" style={{ fontSize: 'clamp(20px, 2.5vw, 28px)', margin: '0 0 24px', color: 'var(--ink)' }}>
+                  {content.successMessage}
+                </p>
+                <button
+                  onClick={closeModal}
+                  style={{
+                    background: 'var(--ink)', color: 'var(--paper)',
+                    border: '3px solid var(--ink)', padding: '12px 28px',
+                    borderRadius: 999, fontFamily: 'Caprasimo, serif', fontSize: 18, cursor: 'pointer',
+                  }}
+                >
+                  Затвори
+                </button>
+              </>
+            ) : (
+              <>
+                <h3 className="display" style={{ fontSize: 'clamp(24px, 3vw, 36px)', margin: '0 0 24px', color: 'var(--ink)' }}>
+                  {content.modalTitle}
+                </h3>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+                  placeholder={content.modalPlaceholder}
+                  style={{
+                    width: '100%', boxSizing: 'border-box',
+                    border: '2.5px solid var(--ink)', borderRadius: 12,
+                    padding: '14px 18px', fontSize: 17,
+                    fontFamily: 'DM Sans, sans-serif',
+                    background: 'var(--bg)', color: 'var(--ink)',
+                    marginBottom: error ? 8 : 20, outline: 'none',
+                  }}
+                />
+                {error && <p style={{ color: 'var(--accent-4)', fontSize: 13, marginBottom: 14 }}>{error}</p>}
+                <button
+                  onClick={handleSubmit}
+                  disabled={loading || !name.trim()}
+                  style={{
+                    width: '100%', background: loading ? 'var(--ink-soft)' : 'var(--ink)',
+                    color: 'var(--paper)', border: '3px solid var(--ink)',
+                    padding: '14px 28px', borderRadius: 999,
+                    fontFamily: 'Caprasimo, serif', fontSize: 18,
+                    cursor: loading || !name.trim() ? 'not-allowed' : 'pointer',
+                    boxShadow: '4px 4px 0 var(--accent)',
+                  }}
+                >
+                  {loading ? '...' : content.modalSubmit}
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
 
 /* ─── FOOTER ─── */
 export const Footer = ({ content }: { content: FooterContent }) => (

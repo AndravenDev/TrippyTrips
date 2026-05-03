@@ -51,6 +51,18 @@ export interface GalleryContent {
   photos: Array<{ sceneKey?: SceneKey; image?: string; caption: string }>;
 }
 
+export interface RsvpContent {
+  eyebrow: string;
+  heading: string;
+  description: string;
+  buttonYes: string;
+  buttonNo: string;
+  modalTitle: string;
+  modalPlaceholder: string;
+  modalSubmit: string;
+  successMessage: string;
+}
+
 export interface FooterContent {
   brand: string;
   tagline: string;
@@ -63,6 +75,7 @@ export interface TripContent {
   why: WhyContent;
   days: DaysContent;
   gallery: GalleryContent;
+  rsvp: RsvpContent;
   footer: FooterContent;
 }
 
@@ -179,7 +192,7 @@ export const tripContent: TripContent = {
   gallery: {
     eyebrow: "· Спомени от преди",
     heading: "Ето някои стари спомени, които да ви вдъхновят да създадете нови",
-    subtitle: "↳ Балкански приключения, 2025. Камери, смях и много спирки.",
+    subtitle: "↳ Палатки, преходи, празненства! Това не е само миналото, направи го настояще!",
     photos: [
       { image: "/20220906_164034.jpg", caption: "Flexin -  06.09.2022" },
       { image: "/1759178041531.jpeg", caption: "Conquerors - септември 2025" },
@@ -188,6 +201,18 @@ export const tripContent: TripContent = {
       { image: "/IMG_20250621_122204.jpg", caption: "Cherry on top - 21.06.2025" },
       { image: "/1759178043430.jpg", caption: "Top of the world - септември 2025" },
     ],
+  },
+
+  rsvp: {
+    eyebrow: '· Кратък roadtrip за 3 дни, с интересни места, без натоварване!',
+    heading: 'Зарибен ли си батенце?',
+    description: '',
+    buttonYes: 'Да, бе! 🔥',
+    buttonNo: 'Не знам още...',
+    modalTitle: 'Кой беше ти?',
+    modalPlaceholder: 'Твоето име',
+    modalSubmit: 'Вътре съм!',
+    successMessage: 'Добавен си! Ще се видим на пътя 🎉',
   },
 
   footer: {
