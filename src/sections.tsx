@@ -247,7 +247,7 @@ export const Hero = ({ content }: { content: HeroContent }) => (
           display: 'inline-flex',
           gap: 'clamp(20px, 3vw, 40px)',
           alignItems: 'center',
-          animation: 'marquee 30s linear infinite',
+          animation: 'marquee 60s linear infinite',
           fontFamily: 'Caprasimo, serif',
           fontSize: 'clamp(17px, 2.5vw, 28px)',
         }}
