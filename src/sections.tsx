@@ -375,37 +375,37 @@ const DayCard = ({ label, title, subtitle, body, distance, time, tags, accent, s
   </div>
 );
 
-const DayScene = ({ sceneKey, accent, caption }: { sceneKey: SceneKey; accent: string; caption: string }) => (
-  <div
-    style={{
-      border: '3px solid var(--ink)',
-      borderRadius: 20,
-      overflow: 'hidden',
-      background: 'var(--ink)',
-      boxShadow: `8px 8px 0 ${accent}`,
-      height: 240,
-      position: 'relative',
-    }}
-  >
-    {sceneMap[sceneKey]}
-    <div
-      className="mono"
-      style={{
-        position: 'absolute',
-        bottom: 12,
-        left: 12,
-        background: 'var(--paper)',
-        color: 'var(--ink)',
-        padding: '4px 10px',
-        borderRadius: 6,
-        fontSize: 12,
-        fontWeight: 500,
-      }}
-    >
-      {caption}
-    </div>
-  </div>
-);
+// const DayScene = ({ sceneKey, accent, caption }: { sceneKey: SceneKey; accent: string; caption: string }) => (
+//   <div
+//     style={{
+//       border: '3px solid var(--ink)',
+//       borderRadius: 20,
+//       overflow: 'hidden',
+//       background: 'var(--ink)',
+//       boxShadow: `8px 8px 0 ${accent}`,
+//       height: 240,
+//       position: 'relative',
+//     }}
+//   >
+//     {sceneMap[sceneKey]}
+//     <div
+//       className="mono"
+//       style={{
+//         position: 'absolute',
+//         bottom: 12,
+//         left: 12,
+//         background: 'var(--paper)',
+//         color: 'var(--ink)',
+//         padding: '4px 10px',
+//         borderRadius: 6,
+//         fontSize: 12,
+//         fontWeight: 500,
+//       }}
+//     >
+//       {caption}
+//     </div>
+//   </div>
+// );
 
 /* ─── DAYS ─── */
 export const Days = ({ content }: { content: DaysContent }) => (
