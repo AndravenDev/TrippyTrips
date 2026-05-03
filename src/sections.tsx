@@ -1,10 +1,8 @@
 import React from 'react';
 import {
   LogoSvg,
-  Mountains,
   StarBurst,
   TopoPattern,
-  Hookah,
   Polaroid,
   SceneCanyon,
   SceneCampfire,

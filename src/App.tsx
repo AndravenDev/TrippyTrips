@@ -1,6 +1,6 @@
 import { tripContent as content } from './content';
 import './responsive.css';
-import { Nav, Hero, Why, Days, Gallery, Footer } from './sections';
+import { Nav, Hero, Days, Gallery, Footer } from './sections';
 import './App.css';
 
 function App() {
