@@ -181,11 +181,11 @@ export const tripContent: TripContent = {
     heading: "Снимки от пътя.",
     subtitle: "↳ Балкански приключения, 2025. Камери, смях и много спирки.",
     photos: [
+      { image: "/20220906_164034.jpg", caption: "юни 2025" },
       { image: "/1759178041531.jpeg", caption: "септември 2022" },
       { image: "/IMG_20251231_210526.jpg", caption: "август 2023" },
       { image: "/IMG_20250302_005559.jpg", caption: "март 2025" },
       { image: "/IMG_20250621_122204.jpg", caption: "юни 2025" },
-      { image: "/1759178041531.jpeg", caption: "юни 2025" },
       { image: "/1759178043430.jpg", caption: "спомени" },
     ],
   },
