@@ -329,12 +329,13 @@ interface DayCardProps {
   distance?: string;
   time?: string;
   image?: string;
+  badge?: string;
   tags: string[];
   accent: string;
   side: 'left' | 'right';
 }
 
-const DayCard = ({ label, title, subtitle, body, distance, time, image, tags, accent, side }: DayCardProps) => (
+const DayCard = ({ label, title, subtitle, body, distance, time, image, badge, tags, accent, side }: DayCardProps) => (
   <div
     className={`day-card day-card--${side}`}
     style={{
@@ -344,9 +345,33 @@ const DayCard = ({ label, title, subtitle, body, distance, time, image, tags, ac
       boxShadow: side === 'left' ? '-7px 8px 0 var(--ink)' : '7px 8px 0 var(--ink)',
       position: 'relative',
       display: 'flex',
+      flexDirection: 'column',
       overflow: 'hidden',
     }}
   >
+    {/* pill badge */}
+    {badge && (
+      <div style={{ padding: '12px 20px 0', display: 'flex' }}>
+        <span style={{
+          background: 'var(--accent-4)',
+          color: 'var(--paper)',
+          border: '2px solid var(--ink)',
+          borderRadius: 999,
+          padding: '4px 14px',
+          fontFamily: 'DM Mono, monospace',
+          fontSize: 11,
+          fontWeight: 600,
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+          whiteSpace: 'nowrap',
+        }}>
+          {badge}
+        </span>
+      </div>
+    )}
+
+    {/* card body: text + photo side by side */}
+    <div style={{ display: 'flex', flex: 1 }}>
     {/* text content */}
     <div style={{ flex: 1, minWidth: 0, padding: '24px 26px' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 8, flexWrap: 'wrap' }}>
@@ -396,6 +421,7 @@ const DayCard = ({ label, title, subtitle, body, distance, time, image, tags, ac
         />
       </div>
     )}
+    </div>{/* end card body row */}
   </div>
 );
 
@@ -482,7 +508,7 @@ export const Days = ({ content }: { content: DaysContent }) => (
               {i + 1}
             </div>
             <div className="day-col is-card" style={{ flex: 1, minWidth: 0 }}>
-              <DayCard {...day} side="right" />
+              <DayCard {...day} side="right" badge={i === 0 ? 'Трябва да се пусне отпуска' : undefined} />
             </div>
           </div>
         ))}
